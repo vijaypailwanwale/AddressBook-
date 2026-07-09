@@ -13,7 +13,7 @@ static Contact dummyContacts[] = {
     {"Ian Lewis", "8889990000", "ian@example.com"}
 };
 
-void populateAddressBook(AddressBook* addressBook)
+void initialize(AddressBook* addressBook)
 {
     //define
 }
