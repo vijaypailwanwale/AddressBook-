@@ -1,4 +1,5 @@
 #include "contact.h"
+#include<string.h>
 // Dummy contact data
 static Contact dummyContacts[] = {
     {"John Doe", "1234567890", "john@example.com"},
@@ -15,5 +16,11 @@ static Contact dummyContacts[] = {
 
 void initialize(AddressBook* addressBook)
 {
-    //define
+    for(int i = 0; i < 10; i++)
+    {
+        strcpy(addressBook->contacts[i].name, dummyContacts[i].name);
+        strcpy(addressBook->contacts[i].phone, dummyContacts[i].phone);
+        strcpy(addressBook->contacts[i].email, dummyContacts[i].email);
+    }
+    addressBook->contactCount = 10; // Set the contact count to the number of dummy contacts
 }
