@@ -3,7 +3,7 @@
 #include<ctype.h>
 
 
-
+//using this veriable for the crate contact function to keep track of chnace given to user to enter valid inputs
 static int chance ;
 
 void clear_buffer()
@@ -71,31 +71,6 @@ void read_name(char name[], int size,AddressBook *create, int *temp_name)
 
 }
 
-void read_email(char mail[], AddressBook *create, int *emailExists )
-{
-    //Read Email ID from user
-
-    // Validate Email id format
-    
-    // Check if Email id already exists
-
-}
-
-
-void listContacts(AddressBook *addresslist)
-{
-    printf("-----------------------------------------------");
-    printf("\n|%5s|%20s |%12s| |%30s|\n", "Sr.no","Name", "Phone", "Email");
-    printf("-----------------------------------------------");
-
-    for(int i = 0; i < addresslist->contactCount; i++)
-    {
-        printf("|%5.4d| |%20.20s| |%12.12s| |%30.30s|\n", i + 1, addresslist->contacts[i].name, addresslist->contacts[i].phone, addresslist->contacts[i].email);
-    }
-
-    printf("-----------------------------------------------");
-}
-
 void read_phone(char phone[], int size, AddressBook *create, int *temp_phone)
 {
     fgets(phone, size, stdin);
@@ -120,6 +95,53 @@ void read_phone(char phone[], int size, AddressBook *create, int *temp_phone)
     *temp_phone = 1;
     chance = 0;
 }
+
+void read_email(char mail[], int size, AddressBook *create, int *emailExists )
+{
+    //Read Email ID from user
+    fgets(mail, size,stdin);
+    clear_buffer();
+
+    // Validate Email id format
+    if( strspn(mail,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@.") != 0 && strspn(mail,"@gmail.com") != 0)
+    {
+        printf("Invalid Email id.\n");
+        chance++;
+        return;
+    }
+    
+    // Check if Email id already exists
+    for(int i = 0; i <= create->contactCount; i++)
+    {
+        if(strcmp(mail,create->contacts[i].email) == 0)
+        {
+            printf("Email ID already exists. Please enter a different Email ID.\n");
+            chance++;
+            return;
+
+        }
+    }
+
+
+    *emailExists = 1;
+    chance = 0;
+}
+
+
+void listContacts(AddressBook *addresslist)
+{
+    printf("-----------------------------------------------");
+    printf("\n|%5s|%20s |%12s| |%30s|\n", "Sr.no","Name", "Phone", "Email");
+    printf("-----------------------------------------------");
+
+    for(int i = 0; i < addresslist->contactCount; i++)
+    {
+        printf("|%5.4d| |%20.20s| |%12.12s| |%30.30s|\n", i + 1, addresslist->contacts[i].name, addresslist->contacts[i].phone, addresslist->contacts[i].email);
+    }
+
+    printf("-----------------------------------------------");
+}
+
 
 void createContact(AddressBook *create)
 {
