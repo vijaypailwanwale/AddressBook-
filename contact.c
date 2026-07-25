@@ -71,6 +71,17 @@ void read_name(char name[], int size,AddressBook *create, int *temp_name)
 
 }
 
+void read_email(char mail[], AddressBook *create, int *emailExists )
+{
+    //Read Email ID from user
+
+    // Validate Email id format
+    
+    // Check if Email id already exists
+
+}
+
+
 void listContacts(AddressBook *addresslist)
 {
     printf("-----------------------------------------------");
