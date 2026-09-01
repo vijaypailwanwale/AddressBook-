@@ -127,7 +127,6 @@ void read_email(char mail[], int size, AddressBook *create, int *emailExists )
     chance = 0;
 }
 
-
 void listContacts(AddressBook *addresslist)
 {
     printf("-----------------------------------------------");
@@ -141,7 +140,6 @@ void listContacts(AddressBook *addresslist)
 
     printf("-----------------------------------------------");
 }
-
 
 void createContact(AddressBook *create)
 {
@@ -186,8 +184,75 @@ void createContact(AddressBook *create)
                 continue;
             }
         }
-
+        
+        create->contactCount++;
     }
 
+}
 
+void search_disp_name(AddressBook *book, char string[],int size)
+{
+    int fount=0;
+    printf("-----------------------------------------------");
+    printf("\n|%5s|%20s |%12s| |%30s|\n", "Sr.no","Name", "Phone", "Email");
+    printf("-----------------------------------------------");
+
+    for(int i = 0; i < book->contactCount; i++)
+    {
+        if(strstr(book->contacts.name[i],string) != NULL)
+        {
+            printf("|%5.4d| |%20.20s| |%12.12s| |%30.30s|\n", i + 1, book->contacts[i].name, book->contacts[i].phone, book->contacts[i].email);
+            found = 1;
+        }
+
+    }
+    if(found == 0)
+    {
+        printf("Contact not found");
+    }
+     
+}
+
+void search_disp_phone(AddressBook *book, char string[],int size)
+{
+    int fount=0;
+    printf("-----------------------------------------------");
+    printf("\n|%5s|%20s |%12s| |%30s|\n", "Sr.no","Name", "Phone", "Email");
+    printf("-----------------------------------------------");
+
+    for(int i = 0; i < book->contactCount; i++)
+    {
+        if(strstr(book->contacts.name[i],string) != NULL)
+        {
+            printf("|%5.4d| |%20.20s| |%12.12s| |%30.30s|\n", i + 1, book->contacts[i].name, book->contacts[i].phone, book->contacts[i].email);
+            found = 1;
+        }
+
+    }
+    if(found == 0)
+    {
+        printf("Contact not found");
+    }
+     
+}
+void searchContact(AddressBook *search)
+{
+    int op = 0;
+    printf("Select the option to search by");
+    printf("1. Search by Name");
+    printf("2. Search by Phone no");
+    printf("3. Search by Email id");
+    scanf("%d",&op);
+    switch(op)
+    {
+        case 1 :
+        char temp_name[50];
+        search_disp_name(&search,temp_name,50);
+        break;
+
+        case 2 :
+        char temp_phone[10];
+        search_disp_name(&search,temp_phone,10);
+
+    }
 }
