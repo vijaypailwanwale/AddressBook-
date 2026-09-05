@@ -21,7 +21,7 @@ int main()
         
         switch (choice) {
             case 1:
-                createContact(&addressBook);
+                createContact(&addressBook,-1);
                 break;
             case 2:
                 searchContact(&addressBook);

@@ -16,7 +16,13 @@ typedef struct {
     int contactCount;
 } AddressBook;
 
-void createContact(AddressBook *addressBook);
+typedef struct
+{
+    int found;
+    int index;
+} SearchResult;
+
+void createContact(AddressBook *addressBook,int index);
 void searchContact(AddressBook *addressBook);
 void editContact(AddressBook *addressBook);
 void deleteContact(AddressBook *addressBook);
